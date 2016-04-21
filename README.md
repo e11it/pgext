@@ -1,6 +1,6 @@
 # Extended official postgresql image
 
-* Based on postgres:9.5
+* Based on postgres:9.5 with ru_RU.UTF8 locale
 
 ## Installed:
 + vim-nox
