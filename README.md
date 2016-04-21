@@ -184,11 +184,6 @@ XLOG_BLOCK_SIZE=8192
 STATUS=OK
 ```
 
-### Examples:
-Stop server:
-gosu postgres bash --login -c '/usr/lib/postgresql/9.5/bin/pg_ctl stop -m immediate'
-
-
 ---
 ### Usefull links:
 - http://ossc-db.github.io/pg_rman/index.html
