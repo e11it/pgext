@@ -1,4 +1,4 @@
-# Extended orgiginal postgresql image
+# Extended official postgresql image
 
 * Based on postgres:9.5
 
