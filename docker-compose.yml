@@ -1,0 +1,32 @@
+version: '2'
+services:
+  postgres:
+    build: .
+    image: pgext:9.5
+    container_name: pgtest
+    labels:
+      version: "9.5"
+    environment:
+      - POSTGRES_USER:postgres
+      - POSTGRES_PASSWORD:bh0dfk3j8h3sbH8sk2
+      - TERM:xterm
+    volumes:
+      - pgdata_ex:/var/lib/postgresql/data
+#      - /var/run/postgresql/:/var/run/postgresql/
+      - pgvrp_ex:/var/run/postgresql/
+      - pgrman_ex:/share/pg_rman
+      - pgwall_ex:/share/pg_wall
+#    restart: always
+#    ports:
+#      - 127.0.0.1:5432:5432
+volumes:
+  pgdata_ex:
+    #    external: true
+  pgrman_ex: {}
+    #    external: true
+  pgwall_ex: {}
+    #    external: true
+  pgvrp_ex: {}
+    #    external: true
+
+#  vim: set ts=2 sw=2 tw=0 et :

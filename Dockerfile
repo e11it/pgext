@@ -6,16 +6,14 @@ ENV LANG ru_RU.utf8
 ENV RMAN_VER 1.3.2
 
 
-RUN groupadd -g 998 rman &&\
-    useradd -g rman -G postgres -u 998 rman -s /bin/bash -d /share/pg_rman && \
-    mkdir -p /share/pg_wall &&\
-    chgrp -R postgres /share/pg_wall &&\
-    chmod g+w /share/pg_wall
+COPY home_root /root
 
-COPY pg_rman /share/pg_rman
-
-RUN chown -R rman:rman /share/pg_rman &&\
-	chmod +x /share/pg_rman/*.sh
+RUN mkdir -p /share/pg_wall \
+    && mkdir -p /share/pg_rman \
+    && chgrp -R postgres /share/pg_wall \
+    && chmod g+w /share/pg_wall \
+	&& chown -R postgres:postgres /share/pg_rman \
+	&& chmod +x /root/*.sh
 
 WORKDIR /usr/local/src
 
@@ -27,6 +25,7 @@ RUN apt-get update && apt-get install -y \
     postgresql-contrib-$PG_MAJOR \
     postgresql-server-dev-$PG_MAJOR \
     wget \
+    less \
     libpam-dev \
     libedit-dev \
     zlib1g-dev \
@@ -44,11 +43,7 @@ RUN apt-get update && apt-get install -y \
 VOLUME /share/pg_rman
 VOLUME /share/pg_wall
 
-COPY docker-entrypoint-fix.sh /
-ENTRYPOINT ["/docker-entrypoint-fix.sh"]
-EXPOSE 5432
-CMD ["postgres"]
 # http://www.postgresql.org/docs/current/static/server-shutdown.html
-STOPSIGNAL SIGINT
+# STOPSIGNAL SIGINT
 
 # vim:set ft=dockerfile:

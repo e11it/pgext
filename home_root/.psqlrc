@@ -1,0 +1,18 @@
+\set QUIET 1
+\set ON_ERROR_ROLLBACK interactive
+\set VERBOSITY verbose
+\x auto
+\set PROMPT1 '%n@:%/%# '
+\set PROMPT2 ''
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTSIZE 20000
+\set HISTCONTROL ignoredups
+\set COMP_KEYWORD_CASE upper
+\pset null [null]
+\pset pager always
+\timing
+\unset QUIET
+-- Don't exit with ctrl-d unless you press it 5 times
+\set IGNOREEOF 5
+\echo 'Type :extensions to see the available extensions. \n'
+\set extensions 'select * from pg_available_extensions;'
